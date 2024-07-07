@@ -27,7 +27,8 @@ const routes:Routes = [
   {path:'Contact',component:ContactComponent},
   {path:'Courses',component:CoursesComponent},
   // {path:'',redirectTo:'Home',pathMatch:'full'}
-  {path:'',component:HomeComponent}
+  {path:'',component:HomeComponent},
+  {path:'**',component:NotFoundComponent}
 ];
 
 @NgModule({
