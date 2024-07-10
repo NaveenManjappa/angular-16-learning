@@ -28,6 +28,7 @@ const routes:Routes = [
   {path:'Courses',component:CoursesComponent},
   // {path:'',redirectTo:'Home',pathMatch:'full'}
   {path:'',component:HomeComponent},
+  {path:'Courses/Course/:id',component:CourseDetailComponent},
   {path:'**',component:NotFoundComponent}
 ];
 
