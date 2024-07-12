@@ -20,21 +20,9 @@ import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { FormsModule } from '@angular/forms';
+import { RoutingModule } from './routing.module';
 
-const routes:Routes = [
-  {path:'Home',component:HomeComponent},
-  {path:'About',component:AboutComponent},
-  {path:'Contact',component:ContactComponent},
-  {path:'Courses',component:CoursesComponent},
-  // {path:'',redirectTo:'Home',pathMatch:'full'}
-  {path:'',component:HomeComponent},
-  // {path:'Courses/Course/:id',component:CourseDetailComponent},
-  {path:'Courses',children:[
-    { path:'Course/:id',component:CourseDetailComponent },
-    {path:'Popular',component:PopularComponent}
-  ]},
-  {path:'**',component:NotFoundComponent}
-];
+
 
 @NgModule({
   declarations: [
@@ -57,7 +45,7 @@ const routes:Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes),
+   RoutingModule,
     FormsModule
   ],
   providers: [ServicesService, CourseService],

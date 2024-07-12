@@ -13,7 +13,8 @@ export class HomeComponent implements OnInit {
     ngOnInit(): void {
         this.activeRoute.fragment.subscribe(res=>{
             console.log(res);
-            this.JumpToSection(res);
+            if(res != null)
+                this.JumpToSection(res);
         })    
     }
 
