@@ -7,6 +7,7 @@ import { CoursesComponent } from "./courses/courses.component";
 import { HomeComponent } from "./home/home.component";
 import { PopularComponent } from "./home/popular/popular.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
+import { LoginComponent } from "./login/login.component";
 
 const routes:Routes = [
     {path:'Home',component:HomeComponent},
@@ -20,6 +21,7 @@ const routes:Routes = [
       { path:'Course/:id',component:CourseDetailComponent },
       {path:'Popular',component:PopularComponent}
     ]},
+    { path:'Login',component:LoginComponent},
     {path:'**',component:NotFoundComponent}
   ];
   
