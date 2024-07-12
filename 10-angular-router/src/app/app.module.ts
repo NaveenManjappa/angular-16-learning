@@ -28,7 +28,11 @@ const routes:Routes = [
   {path:'Courses',component:CoursesComponent},
   // {path:'',redirectTo:'Home',pathMatch:'full'}
   {path:'',component:HomeComponent},
-  {path:'Courses/Course/:id',component:CourseDetailComponent},
+  // {path:'Courses/Course/:id',component:CourseDetailComponent},
+  {path:'Courses',children:[
+    { path:'Course/:id',component:CourseDetailComponent },
+    {path:'Popular',component:PopularComponent}
+  ]},
   {path:'**',component:NotFoundComponent}
 ];
 
