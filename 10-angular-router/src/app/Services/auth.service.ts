@@ -6,7 +6,7 @@ import { UserService } from "./user.service";
 })
 export class AuthService {
 
-    isLogged: Boolean=false;
+    isLogged: boolean=false;
 
     userService: UserService=inject(UserService);
 
