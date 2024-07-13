@@ -20,10 +20,10 @@ const routes:Routes = [
     // {path:'',redirectTo:'Home',pathMatch:'full'}
     { path:'',component:HomeComponent},
     // {path:'Courses/Course/:id',component:CourseDetailComponent},
-    { path:'Courses',children:[
+    { path:'Courses', canActivateChild:[AuthGuardService], children:[
       { path:'Course/:id',component:CourseDetailComponent },
       { path:'Popular',component:PopularComponent },
-      { path: 'Checkout', component:CheckoutComponent,canActivate:[CanActivate] }
+      { path: 'Checkout', component:CheckoutComponent }
     ]},
     { path:'Login',component:LoginComponent},
     {path:'**',component:NotFoundComponent}
