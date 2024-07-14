@@ -10,13 +10,13 @@ import { NotFoundComponent } from "./not-found/not-found.component";
 import { LoginComponent } from "./login/login.component";
 import { CheckoutComponent } from "./checkout/checkout.component";
 import { AuthGuardService } from "./Services/authguard.service";
-import { CanActivate, CanActivateChild } from "./auth.guard";
+import { CanActivate, CanActivateChild, resolve } from "./auth.guard";
 
 const routes:Routes = [
     { path:'Home',component:HomeComponent},
     { path:'About',component:AboutComponent},
     { path:'Contact',component:ContactComponent,canDeactivate:[(comp:ContactComponent)=> comp.canExit()]},
-    { path:'Courses',component:CoursesComponent,resolve:{courses:AuthGuardService}},
+    { path:'Courses',component:CoursesComponent,resolve:{courses:resolve}},
     // {path:'',redirectTo:'Home',pathMatch:'full'}
     { path:'',component:HomeComponent},
     // {path:'Courses/Course/:id',component:CourseDetailComponent},
