@@ -15,7 +15,7 @@ import { CanActivate, CanActivateChild } from "./auth.guard";
 const routes:Routes = [
     { path:'Home',component:HomeComponent},
     { path:'About',component:AboutComponent},
-    { path:'Contact',component:ContactComponent,canDeactivate:[AuthGuardService]},
+    { path:'Contact',component:ContactComponent,canDeactivate:[(comp:ContactComponent)=> comp.canExit()]},
     { path:'Courses',component:CoursesComponent},
     // {path:'',redirectTo:'Home',pathMatch:'full'}
     { path:'',component:HomeComponent},
