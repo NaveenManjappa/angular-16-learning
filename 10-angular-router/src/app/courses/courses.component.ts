@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CoursesComponent implements OnInit {
   coursesService = inject(CourseService);
-  AllCourses: Course[] = this.coursesService.courses;
+  AllCourses: Course[];
   searchString:string;
   activatedRoute: ActivatedRoute=inject(ActivatedRoute);
 
@@ -24,14 +24,16 @@ export class CoursesComponent implements OnInit {
     console.log(this.searchString);
 
     if(this.searchString ===undefined || this.searchString==='' || this.searchString === null){
-      this.AllCourses=this.coursesService.courses;
+        // this.coursesService.getAllcourses().subscribe((data:Course[]) => {
+        //   this.AllCourses=data;
+        // });
+
+        this.AllCourses=this.activatedRoute.snapshot.data['courses'];
     } else {
       this.AllCourses=this.coursesService.courses.filter(x=>x.title.toLowerCase().includes(this.searchString.toLowerCase()));
     }
     
     });
-
-    
 
   }
 }

@@ -16,7 +16,7 @@ const routes:Routes = [
     { path:'Home',component:HomeComponent},
     { path:'About',component:AboutComponent},
     { path:'Contact',component:ContactComponent,canDeactivate:[(comp:ContactComponent)=> comp.canExit()]},
-    { path:'Courses',component:CoursesComponent},
+    { path:'Courses',component:CoursesComponent,resolve:{courses:AuthGuardService}},
     // {path:'',redirectTo:'Home',pathMatch:'full'}
     { path:'',component:HomeComponent},
     // {path:'Courses/Course/:id',component:CourseDetailComponent},
