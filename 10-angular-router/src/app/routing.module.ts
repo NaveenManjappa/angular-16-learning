@@ -23,7 +23,7 @@ const routes:Routes = [
     { path:'Courses', canActivateChild:[CanActivateChild], children:[
       { path:'Course/:id',component:CourseDetailComponent },
       { path:'Popular',component:PopularComponent },
-      { path: 'Checkout', component:CheckoutComponent }
+      { path: 'Checkout', component:CheckoutComponent,data:{name:'Test Course',price:449 } }
     ]},
     { path:'Login',component:LoginComponent},
     {path:'**',component:NotFoundComponent}
