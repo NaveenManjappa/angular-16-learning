@@ -15,6 +15,11 @@ export class AdminComponent implements OnInit {
 
   students: Student[];
   totalMarks: number;
+  totalStudents = new Promise((resolve,reject)=>{
+    setTimeout(() => {
+      resolve(this.students.length)
+    }, 2000);
+  })
 
   filterText:string='All';
   
