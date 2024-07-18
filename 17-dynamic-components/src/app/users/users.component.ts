@@ -13,8 +13,28 @@ export class UsersComponent implements OnInit {
   }
 
   users: User[] = [];
+  showUserToDelete:boolean = false;
+  userToDelete!:User;
 
   ngOnInit() {
     this.users = this.userService.users;
+  }
+
+  OnDeleteUserClicked(user:User){
+    this.userToDelete=user;
+    this.showUserToDelete=true;
+    
+  }
+
+  OnConfirmClicked(event:any){
+    console.log(event);
+    if(event){
+      let index = this.userService.users.indexOf(this.userToDelete);
+      this.userService.users.splice(index,1);
+      this.showUserToDelete=false;
+    }
+    else{
+      this.showUserToDelete=false;
+    }
   }
 }
