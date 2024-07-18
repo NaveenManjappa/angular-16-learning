@@ -6,13 +6,15 @@ import { UsersComponent } from './users/users.component';
 import { ConfirmDeleteComponent } from './users/confirm-delete/confirm-delete.component';
 import { HomeComponent } from './home/home.component';
 import { RoutingModule } from './routing.module';
+import { ViewContainer } from './viewcontainer.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     UsersComponent,
-    ConfirmDeleteComponent
+    ConfirmDeleteComponent,
+    ViewContainer
   ],
   imports: [
     BrowserModule,
@@ -20,5 +22,6 @@ import { RoutingModule } from './routing.module';
   ],
   providers: [],
   bootstrap: [AppComponent]
+  
 })
 export class AppModule { }
