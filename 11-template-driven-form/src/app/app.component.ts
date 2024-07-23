@@ -11,6 +11,12 @@ export class AppComponent {
 
   @ViewChild('regForm') form!:NgForm;
 
+  genders = [
+    {id:'check-male',value:'male',display:'Male'},
+    {id:'check-female',value:'female',display:'Female'},
+    {id:'check-other',value:'other',display:'Other'}
+  ];
+
   OnFormSubmitted(){
     console.log(this.form);
     console.log(this.form.value.firstName);
