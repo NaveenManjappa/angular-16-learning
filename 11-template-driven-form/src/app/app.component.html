@@ -1,4 +1,4 @@
-<section class="container">
+<section class="container" [ngClass]="{'form-shadow':regForm.touched}">
   <header>Registration Form</header>
 
   <form class="form" (ngSubmit)="OnFormSubmitted()" #regForm="ngForm">
