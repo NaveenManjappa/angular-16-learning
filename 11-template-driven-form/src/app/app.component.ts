@@ -13,5 +13,10 @@ export class AppComponent {
 
   OnFormSubmitted(){
     console.log(this.form);
+    console.log(this.form.value.firstName);
+    console.log(this.form.value.lastName);
+    console.log(this.form.value.email);
+
+    console.log(this.form.controls["firstName"].value);
   }
 }
