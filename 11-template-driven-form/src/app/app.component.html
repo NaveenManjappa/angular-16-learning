@@ -1,7 +1,7 @@
 <section class="container">
   <header>Registration Form</header>
 
-  <form class="form">
+  <form class="form" (ngSubmit)="OnFormSubmitted()" #regForm="ngForm">
     <div class="column">
       <div class="input-box">
         <input type="text" placeholder="First Name" />
@@ -71,6 +71,6 @@
         <input type="number" placeholder="Postal code" />
       </div>
     </div>
-    <input type="button" value="Submit" class="submit-btn"> 
+    <input type="submit" value="Submit" class="submit-btn"> 
   </form>
 </section>
