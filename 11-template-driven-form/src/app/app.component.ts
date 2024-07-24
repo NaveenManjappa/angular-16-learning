@@ -26,6 +26,7 @@ export class AppComponent {
     console.log(this.form.value.firstName);
     console.log(this.form.value.lastName);
     console.log(this.form.value.email);
+    console.log(this.form.value.address.country);
 
     console.log(this.form.controls["firstName"].value);
   }
