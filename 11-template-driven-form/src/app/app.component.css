@@ -163,3 +163,12 @@ span{
   padding: 5px 5px;
   font-weight: bold;
 }
+
+input.ng-invalid.ng-touched{
+  border: red 2px solid;
+}
+
+small{
+  color: red;
+  font-weight: bold;
+}
