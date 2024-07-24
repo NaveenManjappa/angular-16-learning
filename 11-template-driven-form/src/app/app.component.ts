@@ -9,6 +9,10 @@ import { NgForm } from '@angular/forms';
 export class AppComponent {
   title = 'template-driven-form';
 
+  firstName:string='';
+  lastName:string='';
+  emailAdr: string='';
+
   @ViewChild('regForm') form!:NgForm;
 
   genders = [

@@ -4,25 +4,28 @@
   <form class="form" (ngSubmit)="OnFormSubmitted()" #regForm="ngForm">
     <div class="column">
       <div class="input-box">
-        <input type="text" placeholder="First Name" name="firstName" ngModel required #fName="ngModel" />
+        <input type="text" placeholder="First Name" name="firstName" [(ngModel)]="firstName" required #fName="ngModel" />
         <div>
           <small *ngIf="fName.touched && fName.invalid">First name is required value</small>
+          <span *ngIf="firstName">You entered: {{ firstName }}</span>
         </div>
       </div> 
 
       <div class="input-box">
-        <input type="text" placeholder="Last Name" name="lastName" ngModel required #lName="ngModel"/>
+        <input type="text" placeholder="Last Name" name="lastName" [(ngModel)]="lastName" required #lName="ngModel"/>
         <div>
-          <small *ngIf="lName.touched && lName.invalid">First name is required value</small>
+          <small *ngIf="lName.touched && lName.invalid">Last name is required value</small>
+          <span *ngIf="lastName">You entered: {{ lastName }}</span>
         </div>
       </div>
       
     </div>    
 
     <div class="input-box">
-      <input type="text" placeholder="Email" name="email" ngModel required email #email="ngModel"/>
+      <input type="text" placeholder="Email" name="email" [(ngModel)]="emailAdr" required email #email="ngModel"/>
       <div>
-        <small *ngIf="email.touched && email.invalid">First name is required value</small>
+        <small *ngIf="email.touched && email.invalid">Email is required value</small>
+        <span *ngIf="emailAdr">You entered: {{ emailAdr }}</span>
       </div>
     </div>
 
