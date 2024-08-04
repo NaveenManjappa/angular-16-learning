@@ -13,6 +13,12 @@ export class AppComponent {
   lastName:string='';
   emailAdr: string='';
   dobirth:string='';
+  gender:string='';
+  country:string='';
+  city:string='';
+  postal:string='';
+  region:string='';
+  username:string='';
 
   @ViewChild('regForm') form!:NgForm;
 
@@ -30,6 +36,16 @@ export class AppComponent {
     console.log(this.form.value.address.country);
 
     console.log(this.form.controls["firstName"].value);
+
+    this.firstName=this.form.value.firstName;
+    this.lastName=this.form.value.lastName;
+    this.emailAdr=this.form.value.email;
+    this.dobirth=this.form.value.dob;
+    this.country=this.form.value.address.country;
+    this.city=this.form.value.address.city;
+    this.region=this.form.value.address.region;
+    this.postal=this.form.value.address.postalcode;
+    this.username=this.form.value.username;
 
     this.form.reset();
 

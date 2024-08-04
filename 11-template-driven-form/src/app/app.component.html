@@ -4,7 +4,7 @@
   <form class="form" (ngSubmit)="OnFormSubmitted()" #regForm="ngForm">
     <div class="column">
       <div class="input-box">
-        <input type="text" placeholder="First Name" name="firstName" [(ngModel)]="firstName" required #fName="ngModel" />
+        <input type="text" placeholder="First Name" name="firstName"  required #fName="ngModel" ngModel />
         <div>
           <small *ngIf="fName.touched && fName.invalid">First name is required value</small>
           <span *ngIf="firstName">You entered: {{ firstName }}</span>
@@ -12,7 +12,7 @@
       </div> 
 
       <div class="input-box">
-        <input type="text" placeholder="Last Name" name="lastName" [(ngModel)]="lastName" required #lName="ngModel"/>
+        <input type="text" placeholder="Last Name" name="lastName"  required #lName="ngModel" ngModel/>
         <div>
           <small *ngIf="lName.touched && lName.invalid">Last name is required value</small>
           <span *ngIf="lastName">You entered: {{ lastName }}</span>
@@ -22,7 +22,7 @@
     </div>    
 
     <div class="input-box">
-      <input type="text" placeholder="Email" name="email" [(ngModel)]="emailAdr" required email #email="ngModel"/>
+      <input type="text" placeholder="Email" name="email"  required email #email="ngModel" ngModel/>
       <div>
         <small *ngIf="email.touched && email.invalid">Email is required value</small>
         <span *ngIf="emailAdr">You entered: {{ emailAdr }}</span>
@@ -34,7 +34,7 @@
         <input type="number" placeholder="Phone Number" name="phone" ngModel/>
       </div>
       <div class="input-box">
-        <input type="date" required [(ngModel)]="dobirth" #tempdob="ngModel" placeholder="Date of Birth" name="dob" />
+        <input type="date" required #tempdob="ngModel" placeholder="Date of Birth" name="dob" ngModel/>
       </div>
     </div>
 
@@ -82,4 +82,27 @@
     <small *ngIf="addrGrp.invalid && addrGrp.touched">Some of the address fields do not contain a valid value</small>
     <input type="submit" value="Submit" class="submit-btn" [disabled]="!regForm.valid" > 
   </form>
+</section>
+
+<section class="user-detail-container">
+  <div class="user-details-container">
+    <div class="user-avatar">
+      <p>{{firstName.slice(0,1).toUpperCase()}}{{lastName.slice(0,1).toUpperCase()}}</p>
+    </div>
+    <div class="user-details">
+      <div class="user-name">
+        <h2>{{firstName}} {{lastName}}</h2>
+      </div>
+      <p><b>Email:</b>{{emailAdr}}</p>
+      <p><b>Username:</b>{{username}}</p>
+      <p><b>DoB:</b>{{dobirth}}</p>
+      <div class="user-name">
+        <h3>Address</h3>
+      </div>
+      <span>{{country}}</span>
+      <span>{{city}}</span>
+      <span>{{region}}</span>
+      <span>{{postal}}</span>
+    </div>
+  </div>
 </section>
