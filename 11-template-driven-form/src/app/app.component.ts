@@ -19,6 +19,7 @@ export class AppComponent {
   postal:string='';
   region:string='';
   username:string='';
+  isAgreed:boolean=false;
 
   @ViewChild('regForm') form!:NgForm;
 
@@ -46,6 +47,7 @@ export class AppComponent {
     this.region=this.form.value.address.region;
     this.postal=this.form.value.address.postalcode;
     this.username=this.form.value.username;
+    this.isAgreed=this.form.value.agreement;
 
     this.form.reset();
 

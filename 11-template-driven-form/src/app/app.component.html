@@ -79,6 +79,10 @@
         <input type="number" placeholder="Postal code" name="postalcode" ngModel required/>
       </div>
     </div>
+    <div class="column">
+      <input type="checkbox" name="agreement" ngModel [(ngModel)]="isAgreed">
+      <label for="agreement">I agree to terms and conditions</label><br>
+    </div>
     <small *ngIf="addrGrp.invalid && addrGrp.touched">Some of the address fields do not contain a valid value</small>
     <input type="submit" value="Submit" class="submit-btn" [disabled]="!regForm.valid" > 
   </form>
