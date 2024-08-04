@@ -43,7 +43,7 @@
       <div>
         <small *ngIf="uname.invalid && uname.touched">*Username is required field</small>
       </div>
-      <button class="btn-gen-username" [disabled]="fName.invalid || lName.invalid || tempdob.invalid" (click)="GenerateUserName()">
+      <button class="btn-gen-username" type="button" [disabled]="fName.invalid || lName.invalid || tempdob.invalid" (click)="GenerateUserName()">
         Create a Username
       </button>
     </div>
@@ -80,6 +80,6 @@
       </div>
     </div>
     <small *ngIf="addrGrp.invalid && addrGrp.touched">Some of the address fields do not contain a valid value</small>
-    <input type="submit" value="Submit" class="submit-btn" [disabled]="!regForm.valid"> 
+    <input type="submit" value="Submit" class="submit-btn" [disabled]="!regForm.valid" > 
   </form>
 </section>
