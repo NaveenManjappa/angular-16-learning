@@ -116,6 +116,9 @@
     </div>
     <button type="button" class="btn-add-delete">Add Experience</button>
 
+    <div class="input-box" formArrayName="skills">
+      <input type="text" placeholder="Add Skills" *ngFor="let control of reactiveForm.get('skills')['controls'];let i=index" [formControlName]="i"/>
+    </div>
     <input type="submit" value="Submit" class="submit-btn" [disabled]="reactiveForm.invalid"> 
     <!-- [disabled]="!reactiveForm.valid" -->
   </form>
