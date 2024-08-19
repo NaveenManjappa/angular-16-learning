@@ -79,35 +79,8 @@
           *Postal code is required field</small>   
       </div>
     </div>
-
     
-
-    <!--HTML for Experience Form Array -->
-    <div class="input-box">
-      <div class="experience">
-        <label>Experience</label>
-        <input type="text" placeholder="Company Name" />
-        <div class="column">
-          <div class="select-box">
-            <select>
-              <option hidden>Position</option>
-              <option>Junior Developer</option>
-              <option>Software Developer</option>
-              <option>Senior Developer</option>
-              <option>Team Lead</option>
-            </select>
-          </div>
-          <input type="number" placeholder="Experience" />
-        </div>
-        <div class="column">
-          <input type="date" placeholder="Start Date" />
-          <input type="date" placeholder="End Date" />
-        </div>
-        <button type="button" class="btn-add-delete">Delete Experience</button>
-      </div>
-    </div>
-    <button type="button" class="btn-add-delete">Add Experience</button>
-
+    <!--HTML for Skills Form Array -->
     <div class="input-box skills" formArrayName="skills">
       <h4>Add Skills</h4>
       <div class="column" *ngFor="let control of reactiveForm.get('skills')['controls'];let i=index">
@@ -116,6 +89,33 @@
       </div>      
     </div>
     <button type="button" (click)="AddSkills()" class="btn-add-delete">Add Skills</button>
+
+    <!--HTML for Experience Form Array -->
+    <div class="input-box" formArrayName="experience">
+      <div class="experience" *ngFor="let exp of reactiveForm.get('experience')['controls'];let i=index" [formGroupName]="i">
+        <label>Experience {{ i+1 }}</label>
+        <input type="text" placeholder="Company Name" formControlName="company"/>
+        <div class="column">
+          <div class="select-box">
+            <select formControlName="position">
+              <option hidden>Position</option>
+              <option>Junior Developer</option>
+              <option>Software Developer</option>
+              <option>Senior Developer</option>
+              <option>Team Lead</option>
+            </select>
+          </div>
+          <input type="number" placeholder="Experience" formControlName="totalExp" />
+        </div>
+        <div class="column">
+          <input type="date" placeholder="Start Date" formControlName="start" />
+          <input type="date" placeholder="End Date" formControlName="end"/>
+        </div>
+        <button type="button" class="btn-add-delete" (click)="DeleteExperience(i)">Delete Experience</button>
+      </div>
+    </div>
+    <button type="button" class="btn-add-delete" (click)="AddExperience()">Add Experience</button>
+
     <input type="submit" value="Submit" class="submit-btn" [disabled]="reactiveForm.invalid"> 
     <!-- [disabled]="!reactiveForm.valid" -->
   </form>

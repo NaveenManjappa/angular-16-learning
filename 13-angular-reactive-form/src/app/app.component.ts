@@ -1,3 +1,4 @@
+import { Expression } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -28,7 +29,8 @@ export class AppComponent implements OnInit{
       }),      
       skills:new FormArray([
         new FormControl(null,Validators.required)        
-      ])
+      ]),
+      experience:new FormArray([])
     });
   }
 
@@ -43,5 +45,20 @@ export class AppComponent implements OnInit{
   DeleteSkill(index){
     const controls=<FormArray>this.reactiveForm.get('skills');
     controls.removeAt(index);
+  }
+
+  AddExperience(){
+    const formGrp=new FormGroup({
+      company:new FormControl(null),
+      position:new FormControl(null),
+      totalExp:new FormControl(null),
+      start:new FormControl(null),
+      end:new FormControl(null)
+    });
+    (<FormArray>this.reactiveForm.get('experience')).push(formGrp);
+  }
+
+  DeleteExperience(index:number){
+    (<FormArray>this.reactiveForm.get('experience')).removeAt(index);
   }
 } 
