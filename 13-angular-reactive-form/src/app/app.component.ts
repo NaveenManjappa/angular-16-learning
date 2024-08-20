@@ -40,7 +40,11 @@ export class AppComponent implements OnInit{
     // });
 
     //value changes event at form group level
-    this.reactiveForm.valueChanges.subscribe(data=>{
+    // this.reactiveForm.valueChanges.subscribe(data=>{
+    //   console.log(data);
+    // });
+
+    this.reactiveForm.get('username').statusChanges.subscribe(data=>{
       console.log(data);
     })
 
