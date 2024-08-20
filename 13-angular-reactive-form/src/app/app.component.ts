@@ -33,6 +33,17 @@ export class AppComponent implements OnInit{
       ]),
       experience:new FormArray([])
     });
+
+    //value changes event at control level    
+    // this.reactiveForm.get('firstName').valueChanges.subscribe((value)=>{
+    //   console.log(value);
+    // });
+
+    //value changes event at form group level
+    this.reactiveForm.valueChanges.subscribe(data=>{
+      console.log(data);
+    })
+
   }
 
   OnFormSubmitted() {
