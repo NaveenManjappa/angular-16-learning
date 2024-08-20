@@ -10,6 +10,7 @@ import { CustomValidators } from './Validators/noSpaceAllowed.validator';
 })
 export class AppComponent implements OnInit{
   title = 'template-driven-form';
+  formStatus:string='';
 
   reactiveForm:FormGroup;
 
@@ -44,8 +45,13 @@ export class AppComponent implements OnInit{
     //   console.log(data);
     // });
 
-    this.reactiveForm.get('username').statusChanges.subscribe(data=>{
-      console.log(data);
+    // this.reactiveForm.get('username').statusChanges.subscribe(data=>{
+    //   console.log(data);
+    // })
+
+    this.reactiveForm.statusChanges.subscribe(status=>{
+      console.log(status);
+      this.formStatus=status;
     })
 
   }
