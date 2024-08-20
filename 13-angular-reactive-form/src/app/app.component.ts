@@ -128,7 +128,7 @@ export class AppComponent implements OnInit{
       experience:this.reactiveForm.get('experience').value
     });
 
-    
+    this.reactiveForm.get('username').setValue(userName);
 
 
   }
