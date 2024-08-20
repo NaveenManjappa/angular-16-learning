@@ -18,7 +18,7 @@ export class AppComponent implements OnInit{
       firstName: new FormControl(null,[Validators.required,CustomValidators.noSpaceAllowed]),
       lastName:new FormControl(null,[Validators.required,CustomValidators.noSpaceAllowed]),
       email:new FormControl(null,[Validators.required,Validators.email]),
-      username:new FormControl(null),
+      username:new FormControl(null,Validators.required,CustomValidators.checkUserName),
       dob:new FormControl(null),
       gender:new FormControl('male'),
       address:new FormGroup({
