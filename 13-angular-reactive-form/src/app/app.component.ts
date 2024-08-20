@@ -110,26 +110,33 @@ export class AppComponent implements OnInit{
     userName=userName.toLowerCase();
     console.log(userName);
 
-    this.reactiveForm.setValue({
-      firstName: this.reactiveForm.get('firstName').value,
-      lastName:this.reactiveForm.get('lastName').value,
-      email:this.reactiveForm.get('email').value,
+    // this.reactiveForm.setValue({
+    //   firstName: this.reactiveForm.get('firstName').value,
+    //   lastName:this.reactiveForm.get('lastName').value,
+    //   email:this.reactiveForm.get('email').value,
+    //   username:userName,
+    //   dob:this.reactiveForm.get('dob').value,
+    //   gender:this.reactiveForm.get('gender').value,
+    //   address:{
+    //     street:this.reactiveForm.get('address.street').value,
+    //     country:this.reactiveForm.get('address.country').value,
+    //     city:this.reactiveForm.get('address.city').value,
+    //     region:this.reactiveForm.get('address.region').value,
+    //     postal:this.reactiveForm.get('address.postal').value
+    //   },      
+    //   skills:this.reactiveForm.get('skills').value,
+    //   experience:this.reactiveForm.get('experience').value
+    // });
+
+    // this.reactiveForm.get('username').setValue(userName);
+
+    //patch value
+    this.reactiveForm.patchValue({
       username:userName,
-      dob:this.reactiveForm.get('dob').value,
-      gender:this.reactiveForm.get('gender').value,
       address:{
-        street:this.reactiveForm.get('address.street').value,
-        country:this.reactiveForm.get('address.country').value,
-        city:this.reactiveForm.get('address.city').value,
-        region:this.reactiveForm.get('address.region').value,
-        postal:this.reactiveForm.get('address.postal').value
-      },      
-      skills:this.reactiveForm.get('skills').value,
-      experience:this.reactiveForm.get('experience').value
+        city:'New Delihi'
+      }
     });
-
-    this.reactiveForm.get('username').setValue(userName);
-
 
   }
 } 
