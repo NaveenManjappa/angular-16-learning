@@ -59,6 +59,7 @@ export class AppComponent implements OnInit{
   OnFormSubmitted() {
     console.log(this.reactiveForm.value);
     this.formData=this.reactiveForm.value;
+    this.reactiveForm.reset();
   }
 
   AddSkills(){
