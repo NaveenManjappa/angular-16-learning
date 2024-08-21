@@ -11,7 +11,7 @@ import { CustomValidators } from './Validators/noSpaceAllowed.validator';
 export class AppComponent implements OnInit{
   title = 'template-driven-form';
   formStatus:string='';
-
+  formData:any={};
   reactiveForm:FormGroup;
 
   ngOnInit(): void {
@@ -57,7 +57,8 @@ export class AppComponent implements OnInit{
   }
 
   OnFormSubmitted() {
-    console.log(this.reactiveForm);
+    console.log(this.reactiveForm.value);
+    this.formData=this.reactiveForm.value;
   }
 
   AddSkills(){

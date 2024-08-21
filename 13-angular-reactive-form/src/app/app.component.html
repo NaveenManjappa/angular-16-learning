@@ -127,25 +127,25 @@
 
 <!--uncomment below HTML for displaying form data-->
 
-<!-- <section class="user-detail-container">
+<section class="user-detail-container">
   <div class="user-details-container">
     <div class="user-avatar">
-      <p>JS</p>
+      <p>{{formData.firstName?.slice(0,1)}}{{formData.lastName?.slice(0,1)}}</p>
     </div>
     <div class="user-details">
       <div class="user-name">
-        <h2>John Smith</h2>
+        <h2>{{formData.firstName }} {{formData.lastName}}</h2>
       </div>
-      <p><b>Email:</b> johnsmith@gmail.com</p>
-      <p><b>Username:</b> johnsmith86 </p>
-      <p><b>Date of birth:</b> July 21, 1989</p>
+      <p><b>Email:</b> {{formData.email}}</p>
+      <p><b>Username:</b> {{formData.username}} </p>
+      <p><b>Date of birth:</b> {{formData.dob}}</p>
       <div class="user-name">
         <h3>Address</h3>
       </div>
-      <span>India</span>.
-      <span> New Delhi</span>.
-      <span> NCR</span>.
-      <span> 234565</span>
+      <span>{{formData.address?.country}}</span>.
+      <span> {{formData.address?.city}}</span>.
+      <span> {{formData.address?.region}}</span>.
+      <span> {{formData.address?.postal}}</span>
     </div>
   </div>
-</section> -->
+</section>
