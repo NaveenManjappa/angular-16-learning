@@ -18,6 +18,7 @@ import { TaskDetailsComponent } from './dashboard/task-details/task-details.comp
     DashboardComponent,
     CreateTaskComponent,
     TaskDetailsComponent
+    
   ],
   imports: [
     BrowserModule,
