@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Task } from '../Model/Task';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard',
@@ -45,7 +46,18 @@ export class DashboardComponent implements OnInit {
   }
 
   private FetchAllTasks() {
-    this.http.get<{[key:string]:Task}>(this.url).subscribe({
+    this.http.get<{[key:string]:Task}>(this.url)
+    .pipe(
+      map(res=>{
+        let tasks=[];
+        for(let key in res){
+          if(res.hasOwnProperty(key))
+            tasks.push({...res[key],id:key});
+        }
+        return tasks;
+      })
+    )
+    .subscribe({
       next:(res)=>{
         console.log(res);
       }
