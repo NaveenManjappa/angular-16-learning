@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Task } from '../Model/Task';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,7 +24,9 @@ export class DashboardComponent{
     console.log(data);
     const url= 'https://angularhttpclient-4d0cd-default-rtdb.europe-west1.firebasedatabase.app/tasks.json';
 
-      this.http.post(url,data).subscribe({
+    const httpHeaders=new HttpHeaders({'warehouse':'MN'});
+
+      this.http.post<{name:string}>(url,data,{headers:httpHeaders}).subscribe({
         next: response => {
           console.log(response);
         },
