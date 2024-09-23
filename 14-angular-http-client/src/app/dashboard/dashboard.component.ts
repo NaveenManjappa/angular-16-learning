@@ -15,6 +15,8 @@ export class DashboardComponent implements OnInit {
   http:HttpClient=inject(HttpClient);
   url= 'https://angularhttpclient-4d0cd-default-rtdb.europe-west1.firebasedatabase.app/tasks.json';
 
+  allTasks:Task[]=[];
+
   ngOnInit(): void {
     this.FetchAllTasks();
   }
@@ -35,6 +37,7 @@ export class DashboardComponent implements OnInit {
       this.http.post<{name:string}>(this.url,data,{headers:httpHeaders}).subscribe({
         next: response => {
           console.log(response);
+          this.FetchAllTasks();
         },
         error: err=>{
           console.log(err);
@@ -44,11 +47,14 @@ export class DashboardComponent implements OnInit {
         }
       });
   }
-
+  FetchAllClicked(){
+    this.FetchAllTasks();
+  }
   private FetchAllTasks() {
     this.http.get<{[key:string]:Task}>(this.url)
     .pipe(
       map(res=>{
+        //Transform the data
         let tasks=[];
         for(let key in res){
           if(res.hasOwnProperty(key))
@@ -59,7 +65,7 @@ export class DashboardComponent implements OnInit {
     )
     .subscribe({
       next:(res)=>{
-        console.log(res);
+        this.allTasks=res;
       }
     });
   }

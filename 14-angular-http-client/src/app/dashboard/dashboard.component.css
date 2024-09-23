@@ -12,7 +12,8 @@ hr{
     padding: 30px 50px;
     border: #fff 1.5px solid;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: row;  
+     flex-wrap: wrap;
 }
 
 .task-action-icons{
@@ -29,8 +30,8 @@ i{
 }
 
 .task-item{
-    width: 23%;
-    margin: 10px 10px;
+    width: 20%;
+    margin: 5px 10px;
     padding: 15px 30px;
     background-color: #fff;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
