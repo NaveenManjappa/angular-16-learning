@@ -27,6 +27,11 @@ export class TaskService {
       });
   }
 
+  UpdateTask(id:string | undefined,data:Task){
+    this.http.put(this.url+'tasks/'+id+'.json',data)
+    .subscribe();
+  }
+
   DeleteTask(id:string | undefined){
     this.http.delete(this.url+'/tasks/'+id+'.json')
     .subscribe();

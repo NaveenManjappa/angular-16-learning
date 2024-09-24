@@ -12,6 +12,9 @@ import { TaskService } from '../services/task.service';
 export class DashboardComponent implements OnInit {
   
   showCreateTaskForm: boolean = false;
+  editMode:boolean=false;
+  selectedTask:Task;
+  selectedTaskId:string;
   allTasks:Task[]=[];
   taskService:TaskService=inject(TaskService);
 
@@ -29,9 +32,11 @@ export class DashboardComponent implements OnInit {
     this.showCreateTaskForm = false;
   }
 
-  CreateTask(task: Task) {
-    
-    this.taskService.CreateTask(task);
+  CreateOrUpdateTask(task: Task) {
+    if(!this.editMode)
+      this.taskService.CreateTask(task);
+    else 
+      this.taskService.UpdateTask(this.selectedTaskId,task);
     
   }
 
@@ -54,5 +59,13 @@ export class DashboardComponent implements OnInit {
 
   DeleteAllTasks(){
     this.taskService.DeleteAllTasks();
+  }
+
+  EditTask(id:string | undefined){
+    this.editMode=true;
+    this.selectedTask= this.allTasks.find((task) =>  task.id===id);
+    this.selectedTaskId=id;
+    console.log('selected task:',this.selectedTask);
+    this.showCreateTaskForm=true;
   }
 }
