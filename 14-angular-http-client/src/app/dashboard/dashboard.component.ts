@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
   showCreateTaskForm: boolean = false;
   
   http:HttpClient=inject(HttpClient);
-  url= 'https://angularhttpclient-4d0cd-default-rtdb.europe-west1.firebasedatabase.app/tasks.json';
+  url= 'https://angularhttpclient-4d0cd-default-rtdb.europe-west1.firebasedatabase.app/';
 
   allTasks:Task[]=[];
 
@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit {
 
     const httpHeaders=new HttpHeaders({'warehouse':'MN'});
 
-      this.http.post<{name:string}>(this.url,data,{headers:httpHeaders}).subscribe({
+      this.http.post<{name:string}>(this.url+'tasks.json',data,{headers:httpHeaders}).subscribe({
         next: response => {
           console.log(response);
           this.FetchAllTasks();
@@ -47,11 +47,13 @@ export class DashboardComponent implements OnInit {
         }
       });
   }
+
   FetchAllClicked(){
     this.FetchAllTasks();
   }
+
   private FetchAllTasks() {
-    this.http.get<{[key:string]:Task}>(this.url)
+    this.http.get<{[key:string]:Task}>(this.url+'tasks.json')
     .pipe(
       map(res=>{
         //Transform the data
@@ -68,5 +70,10 @@ export class DashboardComponent implements OnInit {
         this.allTasks=res;
       }
     });
+  }
+
+  DeleteTask(id:string | undefined){
+    this.http.delete(this.url+'/tasks/'+id+'.json')
+    .subscribe(res => console.log(res));
   }
 }
