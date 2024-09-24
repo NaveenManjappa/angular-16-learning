@@ -74,6 +74,11 @@ export class DashboardComponent implements OnInit {
 
   DeleteTask(id:string | undefined){
     this.http.delete(this.url+'/tasks/'+id+'.json')
-    .subscribe(res => console.log(res));
+    .subscribe(res => this.FetchAllTasks());
+  }
+
+  DeleteAllTasks(){
+    this.http.delete(this.url+'/tasks.json')
+    .subscribe(res => this.FetchAllTasks());
   }
 }
