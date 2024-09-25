@@ -3,6 +3,7 @@ import { Task } from '../Model/Task';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { TaskService } from '../services/task.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,12 +21,21 @@ export class DashboardComponent implements OnInit {
   taskService:TaskService=inject(TaskService);
   errorMessage:string;
 
-  http:HttpClient=inject(HttpClient);
-  url= 'https://angularhttpclient-4d0cd-default-rtdb.europe-west1.firebasedatabase.app/';
+  errorSub:Subscription;
 
   ngOnInit(): void {
     this.FetchAllTasks();
+    this.errorSub=this.taskService.errorSubject.subscribe({
+      next: (httpError) => {
+        this.setErrorMessage(httpError);
+      } 
+    })
   }
+
+  ngOnDestroy(){
+    this.errorSub.unsubscribe();
+  }
+
   OpenCreateTaskForm(){
     this.showCreateTaskForm = true;
   }
@@ -58,9 +68,7 @@ export class DashboardComponent implements OnInit {
         console.log(err);
         this.isLoading=false;
         this.setErrorMessage(err);
-        setTimeout(()=>{
-          this.errorMessage=null;
-        },3000)
+       
       },
       complete:()=>{
 
@@ -69,10 +77,16 @@ export class DashboardComponent implements OnInit {
   }
 
   private setErrorMessage(err:HttpErrorResponse){
-    // console.log(err);
+    console.log('setError',err);
     if(err.error.error === 'Permission denied'){
       this.errorMessage='You do not have permission to perform this action!'
     }
+    else{
+      this.errorMessage=err.message;
+    }
+    setTimeout(()=>{
+      this.errorMessage=null;
+    },5000);
   }
 
   DeleteTask(id:string | undefined){
