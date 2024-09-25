@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Task } from '../Model/Task';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { TaskService } from '../services/task.service';
 
@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
   selectedTaskId:string;
   allTasks:Task[]=[];
   taskService:TaskService=inject(TaskService);
+  errorMessage:string;
 
   http:HttpClient=inject(HttpClient);
   url= 'https://angularhttpclient-4d0cd-default-rtdb.europe-west1.firebasedatabase.app/';
@@ -52,8 +53,26 @@ export class DashboardComponent implements OnInit {
       next:(res)=>{
         this.allTasks=res;
         this.isLoading=false;
+      }, 
+      error: (err) => {
+        console.log(err);
+        this.isLoading=false;
+        this.setErrorMessage(err);
+        setTimeout(()=>{
+          this.errorMessage=null;
+        },3000)
+      },
+      complete:()=>{
+
       }
     });
+  }
+
+  private setErrorMessage(err:HttpErrorResponse){
+    // console.log(err);
+    if(err.error.error === 'Permission denied'){
+      this.errorMessage='You do not have permission to perform this action!'
+    }
   }
 
   DeleteTask(id:string | undefined){
