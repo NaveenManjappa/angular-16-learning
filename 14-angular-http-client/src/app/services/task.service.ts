@@ -51,7 +51,7 @@ export class TaskService {
         for(let key in res){
           if(res.hasOwnProperty(key))
             tasks.push({...res[key],id:key});
-        }
+        }        
         return tasks;
       })
     );

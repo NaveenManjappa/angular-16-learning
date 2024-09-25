@@ -13,6 +13,7 @@ export class DashboardComponent implements OnInit {
   
   showCreateTaskForm: boolean = false;
   editMode:boolean=false;
+  isLoading:boolean=false;
   selectedTask:Task;
   selectedTaskId:string;
   allTasks:Task[]=[];
@@ -45,10 +46,12 @@ export class DashboardComponent implements OnInit {
   }
 
   private FetchAllTasks() {
+    this.isLoading=true;
     this.taskService.FetchAllTasks()
     .subscribe({
       next:(res)=>{
         this.allTasks=res;
+        this.isLoading=false;
       }
     });
   }
