@@ -1,8 +1,9 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { Task } from "../Model/Task";
-import { map } from "rxjs/operators";
-import { Subject } from "rxjs";
+import { catchError, map } from "rxjs/operators";
+import { Subject, throwError } from "rxjs";
+import { LoggingService } from "./logging.service";
 
 @Injectable({
   providedIn:'root'
@@ -13,10 +14,20 @@ export class TaskService {
   url= 'https://angularhttpclient1-4d0cd-default-rtdb.europe-west1.firebasedatabase.app/';
   errorSubject=new Subject<HttpErrorResponse>();
 
+  loggingService=inject(LoggingService);
+
   CreateTask(task: Task) {    
     const httpHeaders=new HttpHeaders({'warehouse':'MN'});
 
-      this.http.post<{name:string}>(this.url+'tasks.json',task,{headers:httpHeaders}).subscribe({
+      this.http.post<{name:string}>(this.url+'tasks.json',task,{headers:httpHeaders})
+      .pipe(
+        catchError(err => {
+          //log the error in database
+          this.loggingService.LogError({statusCode:err.status,errorMessage:err.message,date:new Date()});
+          return throwError(()=>err);
+        })
+      )
+      .subscribe({
         next: response => {
           console.log(response);          
         },
@@ -32,6 +43,13 @@ export class TaskService {
 
   UpdateTask(id:string | undefined,data:Task){
     this.http.put(this.url+'tasks/'+id+'.json',data)
+    .pipe(
+      catchError(err => {
+        //log the error in database
+        this.loggingService.LogError({statusCode:err.status,errorMessage:err.message,date:new Date()});
+        return throwError(()=>err);
+      })
+    )
     .subscribe({
       error: err=>{
         this.errorSubject.next(err);
@@ -41,6 +59,13 @@ export class TaskService {
 
   DeleteTask(id:string | undefined){
     this.http.delete(this.url+'/tasks/'+id+'.json')
+    .pipe(
+      catchError(err => {
+        //log the error in database
+        this.loggingService.LogError({statusCode:err.status,errorMessage:err.message,date:new Date()});
+        return throwError(()=>err);
+      })
+    )
     .subscribe({
       error: err=>{
         this.errorSubject.next(err);
@@ -50,6 +75,13 @@ export class TaskService {
 
   DeleteAllTasks(){
     this.http.delete(this.url+'/tasks.json')
+    .pipe(
+      catchError(err => {
+        //log the error in database
+        this.loggingService.LogError({statusCode:err.status,errorMessage:err.message,date:new Date()});
+        return throwError(()=>err);
+      })
+    )
     .subscribe({
       error: err=>{
         this.errorSubject.next(err);
@@ -68,6 +100,11 @@ export class TaskService {
             tasks.push({...res[key],id:key});
         }        
         return tasks;
+      }),
+      catchError(err => {
+        //log the error in database
+        this.loggingService.LogError({statusCode:err.status,errorMessage:err.message,date:new Date()});
+        return throwError(()=>err);
       })
     );
     
