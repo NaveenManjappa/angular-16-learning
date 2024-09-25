@@ -1,7 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Task } from '../Model/Task';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs/operators';
 import { TaskService } from '../services/task.service';
 import { Subscription } from 'rxjs';
 
@@ -15,7 +14,9 @@ export class DashboardComponent implements OnInit {
   showCreateTaskForm: boolean = false;
   editMode:boolean=false;
   isLoading:boolean=false;
+  showTaskDetail=false;
   selectedTask:Task;
+  currentTask:Task | null=null;
   selectedTaskId:string;
   allTasks:Task[]=[];
   taskService:TaskService=inject(TaskService);
@@ -38,6 +39,7 @@ export class DashboardComponent implements OnInit {
 
   OpenCreateTaskForm(){
     this.showCreateTaskForm = true;
+    this.selectedTask=null;
   }
 
   CloseCreateTaskForm(){
@@ -103,5 +105,20 @@ export class DashboardComponent implements OnInit {
     this.selectedTaskId=id;
     console.log('selected task:',this.selectedTask);
     this.showCreateTaskForm=true;
+  }
+
+  ShowCurrentTaskDetail(id:string | undefined){
+    this.showTaskDetail=true;
+    this.taskService.getTaskDetail(id)
+    .subscribe({
+      next:(task:Task)=>{
+        console.log('current task',task);
+        this.currentTask=task;
+      }
+    });
+  }
+
+  CloseTaskDetail(){
+    this.showTaskDetail=false;
   }
 }

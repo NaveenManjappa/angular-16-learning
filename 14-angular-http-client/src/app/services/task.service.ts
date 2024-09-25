@@ -11,7 +11,7 @@ import { LoggingService } from "./logging.service";
 export class TaskService {
   
   http:HttpClient=inject(HttpClient);
-  url= 'https://angularhttpclient1-4d0cd-default-rtdb.europe-west1.firebasedatabase.app/';
+  url= 'https://angularhttpclient-4d0cd-default-rtdb.europe-west1.firebasedatabase.app/';
   errorSubject=new Subject<HttpErrorResponse>();
 
   loggingService=inject(LoggingService);
@@ -110,4 +110,15 @@ export class TaskService {
     
   }
   
+  getTaskDetail(id:string | undefined){
+    return this.http.get<Task>(this.url+'tasks/'+id+'.json')
+    .pipe(
+      map(res => {
+        let task={};
+        task={...res,id:id}
+        return task;
+      }
+      )
+    );
+  }
 }
