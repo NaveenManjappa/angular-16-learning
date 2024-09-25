@@ -90,7 +90,10 @@ export class TaskService {
   }
   
   FetchAllTasks() {
-    return this.http.get<{[key:string]:Task}>(this.url+'tasks.json')
+    let headers=new HttpHeaders().set('warehouse','test');
+    headers=headers.set('env','stage');
+    headers=headers.append('warehouse','gb');
+    return this.http.get<{[key:string]:Task}>(this.url+'tasks.json',{headers:headers })
     .pipe(
       map(res=>{
         //Transform the data
