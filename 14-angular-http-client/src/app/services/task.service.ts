@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { Task } from "../Model/Task";
 import { catchError, map } from "rxjs/operators";
@@ -93,7 +93,11 @@ export class TaskService {
     let headers=new HttpHeaders().set('warehouse','test');
     headers=headers.set('env','stage');
     headers=headers.append('warehouse','gb');
-    return this.http.get<{[key:string]:Task}>(this.url+'tasks.json',{headers:headers })
+    let queryParams=new HttpParams();
+    queryParams=queryParams.set('item',123);
+    queryParams=queryParams.set('company','abc');
+
+    return this.http.get<{[key:string]:Task}>(this.url+'tasks.json',{headers:headers,params:queryParams })
     .pipe(
       map(res=>{
         //Transform the data
