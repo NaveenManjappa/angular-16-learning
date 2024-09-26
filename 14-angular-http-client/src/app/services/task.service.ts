@@ -77,7 +77,7 @@ export class TaskService {
     this.http.delete(this.url+'/tasks.json',{responseType:'json', observe:'events'})
     .pipe(
       tap(events=>{
-        console.log(events.type, HttpEventType[events.type]);
+        console.log('Event',events.type, HttpEventType[events.type]);
       }),
       catchError(err => {
         //log the error in database
