@@ -1,7 +1,7 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse, HttpEventType, HttpHeaders, HttpParams } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { Task } from "../Model/Task";
-import { catchError, map } from "rxjs/operators";
+import { catchError, map, tap } from "rxjs/operators";
 import { Subject, throwError } from "rxjs";
 import { LoggingService } from "./logging.service";
 
@@ -74,8 +74,11 @@ export class TaskService {
   }
 
   DeleteAllTasks(){
-    this.http.delete(this.url+'/tasks.json')
+    this.http.delete(this.url+'/tasks.json',{responseType:'json', observe:'events'})
     .pipe(
+      tap(events=>{
+        console.log(events.type, HttpEventType[events.type]);
+      }),
       catchError(err => {
         //log the error in database
         this.loggingService.LogError({statusCode:err.status,errorMessage:err.message,date:new Date()});
@@ -97,9 +100,10 @@ export class TaskService {
     queryParams=queryParams.set('item',123);
     queryParams=queryParams.set('company','abc');
 
-    return this.http.get<{[key:string]:Task}>(this.url+'tasks.json',{headers:headers,params:queryParams })
+    return this.http.get<{[key:string]:Task}>(this.url+'tasks.json',{headers:headers,params:queryParams,observe:'body',responseType:'json' })
     .pipe(
       map(res=>{
+        console.log(res);
         //Transform the data
         let tasks=[];
         for(let key in res){
