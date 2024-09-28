@@ -104,6 +104,7 @@ export class TaskService {
     .pipe(
       map(res=>{
         console.log(res);
+        //console.log('json',JSON.stringify(res));
         //Transform the data
         let tasks=[];
         for(let key in res){
