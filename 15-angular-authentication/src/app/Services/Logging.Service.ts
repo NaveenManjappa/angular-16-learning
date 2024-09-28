@@ -7,12 +7,12 @@ import { HttpClient } from '@angular/common/http';
 export class LoggingService{
     http: HttpClient = inject(HttpClient);
     logError(data: {statusCode: number, errorMessage: string, datetime: Date}){
-        this.http.post('https://angularhttpclient-f1d30-default-rtdb.firebaseio.com/log.json', data)
+        this.http.post('https://angularhttpclient-4d0cd-default-rtdb.europe-west1.firebasedatabase.app/log.json', data)
         .subscribe();
     }
 
     fetcherrors(){
-        this.http.get('https://angularhttpclient-f1d30-default-rtdb.firebaseio.com/log.json')
+        this.http.get('https://angularhttpclient-4d0cd-default-rtdb.europe-west1.firebasedatabase.app/log.json')
         .subscribe((data) => {
             console.log(data);
         })
