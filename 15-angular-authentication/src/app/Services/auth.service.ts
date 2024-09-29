@@ -7,7 +7,7 @@ import { AuthResponse } from "../Model/AuthResponse";
 })
 export class AuthService {
   http:HttpClient=inject(HttpClient);
-  url:string='https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAO_Z3fZBfsZzNk_JcUm0I3uPyYyaDvnZs'
+  url:string='https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='
   
   signup(email:string,password:string){
     const data={ email:email,password:password,returnSecureToken:true};

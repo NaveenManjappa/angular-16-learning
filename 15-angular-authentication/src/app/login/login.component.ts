@@ -11,6 +11,7 @@ export class LoginComponent {
   
   authService:AuthService=inject(AuthService);
   isLoginMode:boolean=true;
+  isLoading:boolean=false;
 
   onSwitchMode() {
     this.isLoginMode=!this.isLoginMode;
@@ -20,16 +21,20 @@ export class LoginComponent {
     console.log(form.value);
     const email=form.value.email;
     const password=form.value.password;
+    this.isLoading=true;
     if(this.isLoginMode){
       return;
     }
     else {
+      
       this.authService.signup(email,password).subscribe({
         next:(res)=>{
           console.log(res);
+          this.isLoading=false;
         },
         error:(err)=>{
           console.log(err);
+          this.isLoading=false;
         }
       });
     }
