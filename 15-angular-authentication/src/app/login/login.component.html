@@ -1,4 +1,5 @@
 <div class="app-login-form">
+    <app-snackbar *ngIf="errorMessage" [errorMessage]="errorMessage"></app-snackbar>
     <h2>{{isLoginMode ? 'Login' : 'Signup'}} Here</h2>
     <app-loader *ngIf="isLoading"></app-loader>
     <form #authForm="ngForm" *ngIf="!isLoading" (ngSubmit)="onAuthFormSubmitted(authForm)">
