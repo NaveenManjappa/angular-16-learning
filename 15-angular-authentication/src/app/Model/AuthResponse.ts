@@ -4,4 +4,5 @@ export class AuthResponse {
   refreshToken:string;
   expiresIn:string;
   localId:string;
+  registered?:boolean;
 }

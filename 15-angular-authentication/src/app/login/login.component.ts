@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../Services/auth.service';
+import { Observable } from 'rxjs';
+import { AuthResponse } from '../Model/AuthResponse';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +15,7 @@ export class LoginComponent {
   isLoginMode:boolean=true;
   isLoading:boolean=false;
   errorMessage:string | null=null;
+  authObs:Observable<AuthResponse>;
 
   onSwitchMode() {
     this.isLoginMode=!this.isLoginMode;
@@ -24,11 +27,14 @@ export class LoginComponent {
     const password=form.value.password;
     this.isLoading=true;
     if(this.isLoginMode){
-      return;
+      this.authObs= this.authService.login(email,password);
     }
     else {
       
-      this.authService.signup(email,password).subscribe({
+      this.authObs= this.authService.signup(email,password);
+    }
+    this.authObs
+      .subscribe({
         next:(res)=>{
           console.log(res);
           this.isLoading=false;
@@ -40,8 +46,6 @@ export class LoginComponent {
           this.hideSnackbar();
         }
       });
-    }
-    
     form.reset();
   }
 
