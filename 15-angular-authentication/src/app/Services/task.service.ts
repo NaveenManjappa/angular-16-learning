@@ -64,13 +64,7 @@ export class TaskService{
     }
 
     GetAlltasks(){
-        return this.authService.user
-        .pipe(
-            take(1),
-            exhaustMap(user => {
-                return this.http.get<{[key: string]: Task}>('https://angularhttpclient-4d0cd-default-rtdb.europe-west1.firebasedatabase.app/tasks.json',{params:new HttpParams().set('auth',user.Token)});
-                
-            }),
+        return this.http.get('https://angularhttpclient-4d0cd-default-rtdb.europe-west1.firebasedatabase.app/tasks.json').pipe(
             map((response) => {
                 //TRANSFORM DATA
                 let tasks = [];
