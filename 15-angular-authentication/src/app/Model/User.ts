@@ -13,7 +13,7 @@ export class User {
     
   }
 
-  getToken(){
+  get Token(){
     if(!this._expiresIn || this._expiresIn<new Date())
       return null;
     return this._token;

@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { AuthResponse } from "../Model/AuthResponse";
 import { catchError, tap } from "rxjs/operators";
-import { Subject, throwError } from "rxjs";
+import { BehaviorSubject, Subject, throwError } from "rxjs";
 import { User } from "../Model/User";
 
 @Injectable({
@@ -12,7 +12,7 @@ export class AuthService {
   http:HttpClient=inject(HttpClient);
   url:string='https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=';
   loginUrl:string='https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=';
-  user=new Subject<User>();
+  user=new BehaviorSubject<User>(null);
 
   signup(email:string,password:string){
     const data={ email:email,password:password,returnSecureToken:true};
