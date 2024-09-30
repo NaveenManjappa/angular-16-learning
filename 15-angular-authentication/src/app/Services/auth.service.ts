@@ -4,6 +4,7 @@ import { AuthResponse } from "../Model/AuthResponse";
 import { catchError, tap } from "rxjs/operators";
 import { BehaviorSubject, Subject, throwError } from "rxjs";
 import { User } from "../Model/User";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn:'root'
@@ -13,6 +14,7 @@ export class AuthService {
   url:string='https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=';
   loginUrl:string='https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=';
   user=new BehaviorSubject<User>(null);
+  router:Router=inject(Router);
 
   signup(email:string,password:string){
     const data={ email:email,password:password,returnSecureToken:true};
@@ -32,6 +34,12 @@ export class AuthService {
       }),
       catchError(this.handleError)
     );
+  }
+
+  logout(){
+    this.user.next(null);
+    this.router.navigate(['/login']);
+
   }
 
   private handleCreateUser(res){
