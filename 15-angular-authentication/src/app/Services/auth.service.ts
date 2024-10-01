@@ -42,11 +42,22 @@ export class AuthService {
 
   }
 
+  autoLogin(){
+    
+    const userVal =JSON.parse(localStorage.getItem('user'));
+    if(!userVal) return;
+
+    const loggedInUser=new User(userVal.email,userVal.id,userVal._token,userVal._expiresIn);
+    
+    if(loggedInUser.Token)
+      this.user.next(loggedInUser);
+  }
+
   private handleCreateUser(res){
     const expiresInTime=new Date().getTime()+ +res.expiresIn*1000;
     const expiresIn=new Date(expiresInTime);
     const user=new User(res.email,res.localId,res.idToken,expiresIn);
-    console.log(user);
+    localStorage.setItem('user',JSON.stringify(user));
     this.user.next(user);
   }
 
