@@ -16,25 +16,24 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { LoaderComponent } from './utility/loader/loader.component';
 import { SnackbarComponent } from './utility/snackbar/snackbar.component';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { SharedModule } from './shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    DashboardComponent,
-    CreateTaskComponent,
-    TaskDetailsComponent,
     HomeComponent,
-    LoginComponent,
-    LoaderComponent,
-    SnackbarComponent
+    LoginComponent    
+    
   ],
   imports: [
-    BrowserModule,
-    FormsModule,
+    BrowserModule,    
     HttpClientModule,
-    RouteModule
+    RouteModule,
+    DashboardModule
+    
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
