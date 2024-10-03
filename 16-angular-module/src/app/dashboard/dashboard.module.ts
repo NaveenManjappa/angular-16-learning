@@ -5,8 +5,9 @@ import { TaskDetailsComponent } from "./task-details/task-details.component";
 import { CommonModule } from "@angular/common";
 import { SharedModule } from "../shared.module";
 import { OverviewComponent } from './overview/overview.component';
-import { RouterModule } from "@angular/router";
 import { StatsComponent } from './stats/stats.component';
+import { DashboardRouteModule } from "./dashboard-route.module";
+import { RouterModule } from "@angular/router";
 
 @NgModule({
   declarations:[
@@ -19,13 +20,12 @@ import { StatsComponent } from './stats/stats.component';
   imports:[
     CommonModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    DashboardRouteModule
   ],
-  exports:[
-    DashboardComponent,
-    CreateTaskComponent,
-    TaskDetailsComponent,
-    SharedModule
+  exports:[    
+    SharedModule,
+    DashboardRouteModule
   ]
 })
 

@@ -9,11 +9,7 @@ import { StatsComponent } from './dashboard/stats/stats.component';
 
 const routes: Routes = [ 
     { path: '', component: HomeComponent }, 
-    { path: 'login', component: LoginComponent }, 
-    { path: 'dashboard', canActivate: [canActivate],children:[
-      {path:'overview',component:OverviewComponent},
-      {path:'stats',component:StatsComponent}
-    ] },  
+    { path: 'login', component: LoginComponent }      
   ]; 
 
 @NgModule({
