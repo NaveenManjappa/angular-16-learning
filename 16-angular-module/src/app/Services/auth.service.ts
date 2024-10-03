@@ -58,7 +58,7 @@ export class AuthService{
 
         if(loggedUser.token){
             this.user.next(loggedUser);
-            const timerValue = user._expiresIn.getTime() - new Date().getTime();
+            const timerValue = new Date(user._expiresIn).getTime() - new Date().getTime();
             this.autoLogout(timerValue);
         }
     }
