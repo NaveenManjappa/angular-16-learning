@@ -3,19 +3,23 @@ import { DashboardComponent } from "./dashboard.component";
 import { CreateTaskComponent } from "./create-task/create-task.component";
 import { TaskDetailsComponent } from "./task-details/task-details.component";
 import { CommonModule } from "@angular/common";
-import { FormsModule } from "@angular/forms";
-import { LoaderComponent } from "../utility/loader/loader.component";
 import { SharedModule } from "../shared.module";
+import { OverviewComponent } from './overview/overview.component';
+import { RouterModule } from "@angular/router";
+import { StatsComponent } from './stats/stats.component';
 
 @NgModule({
   declarations:[
     DashboardComponent,
     CreateTaskComponent,
-    TaskDetailsComponent    
+    TaskDetailsComponent,
+    OverviewComponent,
+    StatsComponent    
   ],
   imports:[
     CommonModule,
-    SharedModule
+    SharedModule,
+    RouterModule
   ],
   exports:[
     DashboardComponent,
