@@ -5,7 +5,7 @@ import { CommonModule } from "@angular/common";
 import { RouterModule, Routes } from "@angular/router";
 
 const routes: Routes = [ 
-    { path: 'login', component: LoginComponent }      
+    { path: '', component: LoginComponent }      
 ]; 
 
 @NgModule({
