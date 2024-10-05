@@ -4,37 +4,29 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { CreateTaskComponent } from './dashboard/create-task/create-task.component';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TaskDetailsComponent } from './dashboard/task-details/task-details.component';
-import { AuthInterceptorService } from './Services/auth-interceptor.service';
-import { LoggingInterceptorService } from './Services/logging-interceptor.servive';
+
 import { RouteModule } from './route.module';
 import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { LoaderComponent } from './utility/loader/loader.component';
-import { SnackbarComponent } from './utility/snackbar/snackbar.component';
+
 import { DashboardModule } from './dashboard/dashboard.module';
-import { SharedModule } from './shared.module';
 import { CoreModule } from './core.module';
+import { AuthModule } from './login/auth.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent,
-    LoginComponent    
-    
+    HomeComponent
   ],
   imports: [
     BrowserModule,    
     HttpClientModule,
     RouteModule,
     DashboardModule,
-    CoreModule
+    CoreModule,
+    AuthModule
     
   ],
   providers: [

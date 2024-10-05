@@ -8,8 +8,7 @@ import { OverviewComponent } from './dashboard/overview/overview.component';
 import { StatsComponent } from './dashboard/stats/stats.component';
 
 const routes: Routes = [ 
-    { path: '', component: HomeComponent }, 
-    { path: 'login', component: LoginComponent }      
+    { path: '', component: HomeComponent }         
   ]; 
 
 @NgModule({
