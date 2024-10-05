@@ -8,7 +8,8 @@ import { StatsComponent } from "./stats/stats.component";
 const childRoutes:Routes = [
   { path: 'dashboard', canActivate: [canActivate],children:[
     {path:'overview',component:OverviewComponent},
-    {path:'stats',component:StatsComponent}
+    {path:'stats',component:StatsComponent},
+    {path:'',component:OverviewComponent}
   ] }
 ];
 

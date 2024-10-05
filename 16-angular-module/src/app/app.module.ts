@@ -18,6 +18,7 @@ import { LoaderComponent } from './utility/loader/loader.component';
 import { SnackbarComponent } from './utility/snackbar/snackbar.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { SharedModule } from './shared.module';
+import { CoreModule } from './core.module';
 
 @NgModule({
   declarations: [
@@ -32,12 +33,12 @@ import { SharedModule } from './shared.module';
     BrowserModule,    
     HttpClientModule,
     RouteModule,
-    DashboardModule
+    DashboardModule,
+    CoreModule
     
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptorService, multi: true}
+    
   ],
   bootstrap: [AppComponent]
 })
