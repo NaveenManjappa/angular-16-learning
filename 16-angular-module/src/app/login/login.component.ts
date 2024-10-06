@@ -1,23 +1,28 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../Services/auth.service';
 import { Observable } from 'rxjs';
 import { AuthResponse } from "../Model/AuthResponse";
 import { Router } from '@angular/router';
+import { CounterService } from '../Services/counter.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   authService: AuthService = inject(AuthService);
   isLoginMode: boolean = true;
   isLoading: boolean = false;
   errorMessage: string | null = null;
   authObs: Observable<AuthResponse>;
   router: Router = inject(Router);
+  counterService=inject(CounterService);
 
+  ngOnInit(): void {
+    this.counterService.increment('Login Component');
+  }
   onSwitchMode(){
     this.isLoginMode = !this.isLoginMode;
   }

@@ -1,13 +1,14 @@
-import { Component, EventEmitter, Output, Input, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Output, Input, ViewChild, OnInit, inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Task } from 'src/app/Model/Task';
+import { CounterService } from 'src/app/Services/counter.service';
 
 @Component({
   selector: 'app-create-task',
   templateUrl: './create-task.component.html',
   styleUrls: ['./create-task.component.css']
 })
-export class CreateTaskComponent {
+export class CreateTaskComponent implements OnInit {
   @Input() isEditMode: boolean = false;
 
   @Input() selectedTask: Task;
@@ -20,6 +21,11 @@ export class CreateTaskComponent {
   @Output()
   EmitTaskData: EventEmitter<Task> = new EventEmitter<Task>();
 
+  counterService=inject(CounterService);
+
+  ngOnInit(): void {
+    this.counterService.increment('CreateTask Component');
+  }
   ngAfterViewInit(){
     setTimeout(() => {
       this.taskForm.form.patchValue(this.selectedTask);
