@@ -3,6 +3,7 @@ import { LoginComponent } from "./login.component";
 import { SharedModule } from "../shared.module";
 import { CommonModule } from "@angular/common";
 import { RouterModule, Routes } from "@angular/router";
+import { CounterService } from "../Services/counter.service";
 
 const routes: Routes = [ 
     { path: '', component: LoginComponent }      
@@ -14,6 +15,9 @@ const routes: Routes = [
   ],
   imports:[
     SharedModule,CommonModule,RouterModule.forChild(routes)
+  ],
+  providers:[
+    CounterService
   ]
 })
 export class AuthModule {
