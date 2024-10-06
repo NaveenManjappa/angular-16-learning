@@ -5,6 +5,7 @@ import { BehaviorSubject, Subject, catchError, throwError } from "rxjs";
 import { User } from "../Model/User";
 import { tap } from 'rxjs/operators';
 import { Router } from "@angular/router";
+import { environment } from "src/environments/environment";
 
 @Injectable()
 export class AuthService{
@@ -17,7 +18,7 @@ export class AuthService{
         const data = {email: email, password: password, returnSecureToken: true};
         return this.http.post<AuthResponse>
             (
-                'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDEA2kXgc4OW5SeeQ7iH7gPcb2CEknxMp8', 
+                'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='+environment.firbaseAPIKey, 
                 data
             ).pipe(catchError(this.handleError), tap((res) => {
                 this.handleCreateUser(res)
@@ -27,7 +28,7 @@ export class AuthService{
     login(email, password){
         const data = {email: email, password: password, returnSecureToken: true};
         return this.http.post<AuthResponse>(
-            'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDEA2kXgc4OW5SeeQ7iH7gPcb2CEknxMp8',
+            'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='+environment.firbaseAPIKey,
             data
         ).pipe(catchError(this.handleError), tap((res) => {
             this.handleCreateUser(res)
