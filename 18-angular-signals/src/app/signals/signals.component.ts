@@ -1,4 +1,4 @@
-import { Component, DoCheck , signal} from '@angular/core';
+import { Component, DoCheck , signal,computed,effect} from '@angular/core';
 
 @Component({
   selector: 'app-signals',
@@ -8,8 +8,17 @@ import { Component, DoCheck , signal} from '@angular/core';
 export class SignalsComponent implements DoCheck {
    counter = signal(0);//writable signal
 
+   doubleCounter=computed(() => this.counter()*2);
+
    message= signal<string[]>([]);
 
+   /**
+    *
+    */
+   constructor() {
+   effect(()=>console.log('New counter value is:',this.counter()));
+    
+   }
    ngDoCheck(): void {
      console.log('Angular change detection called!');
    }
