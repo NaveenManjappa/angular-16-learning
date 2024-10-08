@@ -1,0 +1,22 @@
+button {
+  background-color: rgb(44, 108, 245);
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100px;
+  margin-top: 10px;
+  
+}
+section {
+  
+  background-color: rgb(238, 234, 234);
+  padding: 15px;
+}
+
+div {
+  margin-left:20px;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
