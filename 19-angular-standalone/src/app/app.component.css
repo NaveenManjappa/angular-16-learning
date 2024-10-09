@@ -6,6 +6,12 @@ ul {
 li {
   display: inline-block;
   padding: 20px;
+  color: white;
+}
+
+li a {
+  color: white;
+  text-decoration: none;
 }
 
 li:hover {
