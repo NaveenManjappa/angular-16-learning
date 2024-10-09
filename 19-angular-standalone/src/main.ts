@@ -2,7 +2,8 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
 import { ActionService } from './app/shared/action.service';
 import { importProvidersFrom } from '@angular/core';
-import { AppRouteModule } from './app/app-route.module';
+import { provideRouter } from '@angular/router';
+import { app_routes } from './app/app-route';
 
 
 // platformBrowserDynamic().bootstrapModule(AppModule)
@@ -11,6 +12,6 @@ import { AppRouteModule } from './app/app-route.module';
 bootstrapApplication(AppComponent,{
   providers:[
     ActionService,// equivalent to providing service at the root module level
-    importProvidersFrom(AppRouteModule)
+    provideRouter(app_routes)
   ] 
 });
